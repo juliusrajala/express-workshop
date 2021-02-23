@@ -25,7 +25,9 @@ export const getGuildById = async (db: DBObject, id: string): Promise<Guild | vo
 }
 
 
-export const searchGuilds = async (db: DBObject, query: Partial<Guild>): Promise<Guild[]> => {
-  // Search the guilds for items that match the search terms.
-  return []
+export const searchGuilds = async (db: DBObject, key: string, value: string): Promise<Guild[]> => {
+  const guilds = await getGuildData(db);
+  const matches = guilds.filter(item => item[key] === value);
+
+  return matches;
 }
